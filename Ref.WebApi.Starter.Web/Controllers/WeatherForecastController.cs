@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Ref.WebApi.Starter.Web.Models;
 
 namespace Ref.WebApi.Starter.Web.Controllers
 {
@@ -17,10 +18,12 @@ namespace Ref.WebApi.Starter.Web.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly CurrentTimeStamp _currentTime;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, CurrentTimeStamp currentTime)
         {
             _logger = logger;
+            _currentTime = currentTime;
         }
 
         [HttpGet]

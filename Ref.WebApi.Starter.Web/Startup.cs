@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Ref.WebApi.Starter.Web.CompositionRoot;
 
 namespace Ref.WebApi.Starter.Web
 {
@@ -33,6 +36,12 @@ namespace Ref.WebApi.Starter.Web
             });
         }
 
+        [UsedImplicitly]
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new StartupModule());
+        }
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -42,8 +51,12 @@ namespace Ref.WebApi.Starter.Web
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ref.WebApi.Starter.Web v1"));
             }
+            else
+            {
+                app.UseHttpsRedirection();    
+            }
 
-            app.UseHttpsRedirection();
+            
 
             app.UseRouting();
 

@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace Ref.WebApi.Starter.Web
+namespace Ref.WebApi.Starter.Web.Models
 {
     public class WeatherForecast
     {
