@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Ref.WebApi.Starter.Web.Models;
@@ -9,6 +8,7 @@ using Ref.WebApi.Starter.Web.Models.Business;
 
 namespace Ref.WebApi.Starter.Web.Controllers
 {
+    [Obsolete("Serves only as an example")]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -30,6 +30,9 @@ namespace Ref.WebApi.Starter.Web.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogDebug($"called {nameof(WeatherForecastController)}.{nameof(WeatherForecastController.Get)}");
+            
+            
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {

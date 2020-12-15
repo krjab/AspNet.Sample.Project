@@ -2,6 +2,7 @@
 
 namespace Ref.WebApi.Starter.Web.Models
 {
+    [Obsolete("Serves only as an example")]
     public class WeatherForecast
     {
         public DateTime Date { get; set; }
