@@ -1,5 +1,5 @@
 ﻿using System;
-using Ref.WebApi.Starter.Web.Models;
+using Ref.WebApi.Starter.Web.Models.Business;
 
 namespace Ref.WebApi.Starter.Web.Services.RequestContext
 {
@@ -7,7 +7,7 @@ namespace Ref.WebApi.Starter.Web.Services.RequestContext
     {
         public CurrentTimeStamp Resolve()
         {
-            return new CurrentTimeStamp(DateTime.Now);
+            return new (DateTime.Now);
         }    
     }
 }

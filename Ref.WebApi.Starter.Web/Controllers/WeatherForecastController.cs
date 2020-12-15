@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Ref.WebApi.Starter.Web.Models;
+using Ref.WebApi.Starter.Web.Models.Business;
 
 namespace Ref.WebApi.Starter.Web.Controllers
 {
@@ -32,7 +33,7 @@ namespace Ref.WebApi.Starter.Web.Controllers
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
-                    Date = DateTime.Now.AddDays(index),
+                    Date = _currentTime.TimeStamp.AddDays(index),
                     TemperatureC = rng.Next(-20, 55),
                     Summary = Summaries[rng.Next(Summaries.Length)]
                 })
