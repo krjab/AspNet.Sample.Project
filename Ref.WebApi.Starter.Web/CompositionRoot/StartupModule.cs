@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Ref.WebApi.Starter.Contracts.RequestContext;
 using Ref.WebApi.Starter.Web.Services.RequestContext;
 
 namespace Ref.WebApi.Starter.Web.CompositionRoot
@@ -7,8 +8,8 @@ namespace Ref.WebApi.Starter.Web.CompositionRoot
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CurrentTimeStampResolver>().SingleInstance();
-            builder.Register(c => c.Resolve<CurrentTimeStampResolver>().Resolve())
+            builder.RegisterType<CurrentTimeStampResolver>().As<ICurrentTimeStampResolver>().SingleInstance();
+            builder.Register(c => c.Resolve<ICurrentTimeStampResolver>().Resolve())
                 .InstancePerLifetimeScope();
         }
     }

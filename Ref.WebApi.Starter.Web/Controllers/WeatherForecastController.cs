@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Ref.WebApi.Starter.Contracts.RequestContext;
 using Ref.WebApi.Starter.Web.Models;
-using Ref.WebApi.Starter.Web.Models.Business;
 
 namespace Ref.WebApi.Starter.Web.Controllers
 {
@@ -31,7 +31,6 @@ namespace Ref.WebApi.Starter.Web.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             _logger.LogInformation($"called {nameof(WeatherForecastController)}.{nameof(WeatherForecastController.Get)}");
-            
             
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast(_currentTime.TimeStamp.AddDays(index),

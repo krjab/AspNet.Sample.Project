@@ -1,9 +1,9 @@
 ﻿using System;
-using Ref.WebApi.Starter.Web.Models.Business;
+using Ref.WebApi.Starter.Contracts.RequestContext;
 
 namespace Ref.WebApi.Starter.Web.Services.RequestContext
 {
-    internal class CurrentTimeStampResolver
+    internal class CurrentTimeStampResolver : ICurrentTimeStampResolver
     {
         public CurrentTimeStamp Resolve()
         {
