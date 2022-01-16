@@ -32,7 +32,6 @@ namespace Ref.WebApi.Starter.Web.Controllers
         {
             _logger.LogInformation($"called {nameof(WeatherForecastController)}.{nameof(WeatherForecastController.Get)}");
             
-            
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast(_currentTime.TimeStamp.AddDays(index),
                     rng.Next(-20, 55),

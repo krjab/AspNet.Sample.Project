@@ -2,5 +2,5 @@
 
 namespace Ref.WebApi.Starter.Web.Models.Business
 {
-    public record CurrentTimeStamp (DateTime TimeStamp);
+    public record struct CurrentTimeStamp (DateTime TimeStamp);
 }

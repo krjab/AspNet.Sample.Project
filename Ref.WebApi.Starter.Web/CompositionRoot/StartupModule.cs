@@ -7,8 +7,8 @@ namespace Ref.WebApi.Starter.Web.CompositionRoot
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CurrentTimeStampResolver>().SingleInstance();
-            builder.Register(c => c.Resolve<CurrentTimeStampResolver>().Resolve())
+            builder.RegisterType<CurrentTimeStampResolver>().As<ICurrentTimeStampResolver>().SingleInstance();
+            builder.Register(c => c.Resolve<ICurrentTimeStampResolver>().Resolve())
                 .InstancePerLifetimeScope();
         }
     }
