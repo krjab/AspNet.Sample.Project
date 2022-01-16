@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Ref.WebApi.Starter.Web
 {
@@ -19,6 +20,8 @@ namespace Ref.WebApi.Starter.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog((context, _, configuration) => configuration
+                    .ReadFrom.Configuration(context.Configuration))
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
 
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });

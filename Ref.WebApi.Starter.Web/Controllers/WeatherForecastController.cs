@@ -30,7 +30,7 @@ namespace Ref.WebApi.Starter.Web.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            _logger.LogDebug($"called {nameof(WeatherForecastController)}.{nameof(WeatherForecastController.Get)}");
+            _logger.LogInformation($"called {nameof(WeatherForecastController)}.{nameof(WeatherForecastController.Get)}");
             
             
             var rng = new Random();
