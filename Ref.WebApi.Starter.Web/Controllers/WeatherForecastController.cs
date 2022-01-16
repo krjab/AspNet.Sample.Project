@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Ref.WebApi.Starter.Contracts.RequestContext;
 using Ref.WebApi.Starter.Web.Models;
-using Ref.WebApi.Starter.Web.Models.Business;
 
 namespace Ref.WebApi.Starter.Web.Controllers
 {

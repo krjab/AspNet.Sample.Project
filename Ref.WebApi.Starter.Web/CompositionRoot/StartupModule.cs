@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Ref.WebApi.Starter.Contracts.RequestContext;
 using Ref.WebApi.Starter.Web.Services.RequestContext;
 
 namespace Ref.WebApi.Starter.Web.CompositionRoot
