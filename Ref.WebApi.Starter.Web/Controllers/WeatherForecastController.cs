@@ -34,13 +34,10 @@ namespace Ref.WebApi.Starter.Web.Controllers
             
             
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = _currentTime.TimeStamp.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = Summaries[rng.Next(Summaries.Length)]
-                })
-                .ToArray();
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast(_currentTime.TimeStamp.AddDays(index),
+                    rng.Next(-20, 55),
+                    Summaries[rng.Next(Summaries.Length)]
+                )).ToArray();
         }
     }
 }
