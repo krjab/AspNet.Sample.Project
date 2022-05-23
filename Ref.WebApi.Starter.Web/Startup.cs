@@ -1,13 +1,10 @@
 using System.Reflection;
-using Autofac;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Ref.WebApi.Starter.Web.CompositionRoot;
 
 namespace Ref.WebApi.Starter.Web
 {
@@ -30,12 +27,6 @@ namespace Ref.WebApi.Starter.Web
             });
         }
 
-        [UsedImplicitly]
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new StartupModule());
-        }
-        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
