@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Ref.WebApi.Starter.Contracts.RequestContext;
 using Ref.WebApi.Starter.Web.Models;
+using Ref.WebApi.Starter.Web.Services;
 
 namespace Ref.WebApi.Starter.Web.Controllers
 {
@@ -13,30 +13,21 @@ namespace Ref.WebApi.Starter.Web.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly CurrentTimeStamp _currentTime;
+        private readonly IForecastService _forecastService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, CurrentTimeStamp currentTime)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IForecastService forecastService)
         {
             _logger = logger;
-            _currentTime = currentTime;
+            _forecastService = forecastService;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> Get()
         {
             _logger.LogInformation($"called {nameof(WeatherForecastController)}.{nameof(WeatherForecastController.Get)}");
-            
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast(_currentTime.TimeStamp.AddDays(index),
-                    rng.Next(-20, 55),
-                    Summaries[rng.Next(Summaries.Length)]
-                )).ToArray();
+
+            return await _forecastService.FetchForecast();
         }
     }
 }
