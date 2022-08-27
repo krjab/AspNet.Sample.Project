@@ -5,6 +5,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
+using Ref.WebApi.Starter.Web.Controllers;
 using Ref.WebApi.Starter.Web.Models;
 using Ref.WebApi.Starter.Web.Services;
 
@@ -25,12 +26,12 @@ public class SampleControllerTest
 		// Setup
 		
 		var fakeService = new Mock<IForecastService>();
-		WeatherForecast forecastEntry = new WeatherForecast(new DateTime(2022, 5, 23, 9, 10, 11),
+		WeatherForecast fakeResultEntry = new WeatherForecast(new DateTime(2022, 5, 23, 9, 10, 11),
 			38,
 			"Some summary");
 		fakeService.Setup(x => x.FetchForecast()).ReturnsAsync(new[]
 		{
-			forecastEntry
+			fakeResultEntry
 		});
 		
 		// Run
@@ -38,7 +39,7 @@ public class SampleControllerTest
 		var response = await TestWebApplicationFactory.CreateClientForWithMockedServices(b =>
 		{
 			b.Register(c => fakeService.Object).As<IForecastService>();
-		}).GetAsync("/WeatherForecast");
+		}).GetAsync(WeatherForecastController.UrlPathGet);
 		
 		// Verify
 		
@@ -48,7 +49,7 @@ public class SampleControllerTest
 		var result =JsonConvert.DeserializeObject<WeatherForecast[]>(responseString);
 
 		result.Length.Should().Be(1);
-		result[0].Should().Be(forecastEntry);
+		result[0].Should().Be(fakeResultEntry);
 
 	}
 }

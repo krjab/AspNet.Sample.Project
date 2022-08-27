@@ -10,9 +10,12 @@ namespace Ref.WebApi.Starter.Web.Controllers
 {
     [Obsolete("Serves only as an example")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("/" + WeatherForecastController.UrlPathGet)]
     public class WeatherForecastController : ControllerBase
     {
+        public const string UrlPathGet = "WeatherForecast";
+        
+        
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IForecastService _forecastService;
 
